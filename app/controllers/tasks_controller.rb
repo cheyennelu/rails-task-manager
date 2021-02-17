@@ -1,10 +1,12 @@
 class TasksController < ApplicationController
+
+  before_action :identify_task, only: [:show, :edit, :update, :destroy]
+
   def index
     @tasks = Task.all
   end
 
   def show
-    @task = Task.find(params[:id])
   end
 
   def new
@@ -12,12 +14,38 @@ class TasksController < ApplicationController
   end
 
   def create
-    strong_params = params.require(:task).permit(:title, :details)
     @task = Task.new(strong_params)
     if @task.save
-      redirect_to show_task_path(@task)
+      redirect_to task_path(@task)
     else
       render :new
     end
+  end
+
+  def edit
+  end
+
+  def update
+    if @task.update(strong_params)
+      redirect_to task_path(@task)
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    if @task.destroy
+      redirect_to tasks_path
+    end
+  end
+
+private
+
+  def identify_task
+    @task = Task.find(params[:id])
+  end
+
+  def strong_params
+    params.require(:task).permit(:title, :details, :completed)
   end
 end
