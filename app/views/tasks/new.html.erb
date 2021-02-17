@@ -1,25 +1,26 @@
-<h1>Add new Task</h1>
-
-<%= form_for @task do |f| %>
-  <div>
-    <%= f.label :title %>
-    <%= f.text_field :title, value: @task.title %>
-  </div>
-  <div>
-    <%= f.label :details %>
-    <%= f.text_field :details, value: @task.details %>
-  </div>
-  <div>
-    <%= f.check_box :completed %>
-    <%= f.label :completed, "Completed" %>
-  </div>
-  <%= f.submit %>
-<% end %>
-
-<ul>
-<% if @task.errors %>
-  <% @task.errors.full_messages.each do |message| %>
-  <li><%= message %></li>
+<div class='page-title'><h1>Add new Task</h1></div>
+<div class="form-box">
+  <%= form_for @task do |f| %>
+    <div>
+      <%= f.label :title %>
+      <%= f.text_field :title, value: @task.title %>
+    </div>
+    <div>
+      <%= f.label :details %>
+      <%= f.text_field :details, value: @task.details %>
+    </div>
+    <div>
+      <%= f.check_box :completed %>
+      <%= f.label :completed, "Completed" %>
+    </div>
+    <%= f.submit %>
   <% end %>
-<% end %>
-</ul>
+
+  <ul>
+  <% if @task.errors %>
+    <% @task.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  <% end %>
+  </ul>
+</div>

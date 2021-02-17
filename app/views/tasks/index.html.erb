@@ -1,15 +1,18 @@
-<h1>My Tasks</h1>
+<div class="container">
+  <div class='page-title'><h1>My Tasks</h1></div>
 
-<% @tasks.each do |task| %>
-  <% if task.completed == true %>
-    <h3> ✔️ <%= link_to "#{task.title}", task_path(task.id) %></h3>
-  <% else %>
-    <h3>✖️ <%= link_to "#{task.title}", task_path(task.id) %> </h3>
+  <% @tasks.each do |task| %>
+    <h3>
+      <% if task.completed == true %>
+      <i class="fas fa-check"></i></i> <%= link_to "#{task.title}", task_path(task.id) %>
+      <% else %>
+      <i class="fas fa-times"></i> <%= link_to "#{task.title}", task_path(task.id) %>
+      <% end %>
+      <%= link_to task_path(task.id), method: :delete, data: { confirm: "Delete #{task.title}?" } do %>
+      <i class="fas fa-trash-alt fa-xs"></i>
+      <% end %>
+    </h3>
   <% end %>
-  <%= link_to "Delete",
-            task_path(task),
-            method: :delete,
-            data: { confirm: "Are you sure?" } %>
-<% end %>
 
-<p>➕ <%= link_to 'Add new task', new_task_path %></p>
+  <div class="lower-link"><p><i class="fas fa-plus"></i> <%= link_to 'Add new task', new_task_path %></p></div>
+</div>

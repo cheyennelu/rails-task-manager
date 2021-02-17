@@ -1,4 +1,4 @@
-<h1><%= @task.title %></h1>
+<div class='page-title'><h1><%= @task.title %></h1></div>
 <button><%= link_to 'Edit this Task', edit_task_path(@task) %> </button>
 <div class="detail-container">
   <p> <%= @task.details %> </p>
@@ -8,4 +8,4 @@
 <% else %>
   <p> ❎ This task is not completed yet.</p>
 <% end %>
-<p>🔙 <%= link_to 'Back to list', tasks_path %></p>
+<div class="lower-link"><p><i class="fas fa-chevron-left"></i><%= link_to 'Back to list', tasks_path %></p></div>
